@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vandee.aplikasikita.R;
-import com.vandee.aplikasikita.dashboard.dashboard;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,7 +22,5 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         tv_regis = findViewById(R.id.tv_register);
 
-        Intent intent = new Intent(LoginActivity.this, dashboard.class);
-        startActivity(intent);
     }
 }
