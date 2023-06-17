@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vandee.aplikasikita.R;
 import com.vandee.aplikasikita.model.ApiResponse;
@@ -65,24 +66,48 @@ public class RegisterActivity extends AppCompatActivity {
             etPassword.setError("Please Isi Password");
             etPassword.requestFocus();
         }else{
-            progressDialog.setMessage("Please Wait Register");
-            progressDialog.setTitle("Registration");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
+//            progressDialog.setMessage("Please wait Register...");
+//            progressDialog.setTitle("Registration");
+//            progressDialog.setCanceledOnTouchOutside(false);
+//            progressDialog.show();
 
             Call<ApiResponse> call = ApiClient.getApiClient().create(ApiInterface.class)
                     .performUserRegisIn(name, username, password);
             call.enqueue(new Callback<ApiResponse>() {
                 @Override
                 public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-
+                    if(response.isSuccessful()){
+                        if(response.body().getStatus().equals("OK")){
+                            if(response.body().getStatusCode() == 1){
+                                Toast.makeText(RegisterActivity.this, response.body().getStatus(),
+                                        Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+                                finish();
+                            }else {
+                                Toast.makeText(RegisterActivity.this, "User already exist....!!!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(RegisterActivity.this, "Something Wrong....!!!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(RegisterActivity.this, "Something Wrong....!!!",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<ApiResponse> call, Throwable t) {
-
+                    Toast.makeText(RegisterActivity.this, t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
