@@ -10,10 +10,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vandee.aplikasikita.R;
+import com.vandee.aplikasikita.model.ApiResponse;
+import com.vandee.aplikasikita.util.ApiClient;
+import com.vandee.aplikasikita.util.ApiInterface;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
-    TextView login, etEmail, etPassword, etPasswordConfirm;
+    TextView login, etName, etUsername, etPassword;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         login = findViewById(R.id.login);
         btnRegister = findViewById(R.id.btnRegister);
-        etEmail = findViewById(R.id.etEmail);
+        etName = findViewById(R.id.etName);
         etPassword = findViewById(R.id.etPassword);
-        etPasswordConfirm = findViewById(R.id.etPasswordConfirm);
+        etUsername = findViewById(R.id.etUsername);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,24 +51,38 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void signUp(){
-        String etEmail1 = etEmail.getText().toString();
-        String etPassword1 = etPassword.getText().toString();
-        String etPasswordConfirm1 = etPasswordConfirm.getText().toString();
+        String name = etName.getText().toString();
+        String password = etPassword.getText().toString();
+        String username = etUsername.getText().toString();
 
-        if(etEmail1.isEmpty()){
-            etEmail.setError("Please Isi Email");
-            etEmail.requestFocus();
-        }else if(etPassword1.isEmpty() || etPassword1.length() < 6){ //Jika Password Kosong atau password kurang dari 6 karakter
+        if(name.isEmpty()){
+            etName.setError("Please Isi Name");
+            etName.requestFocus();
+        }else if(username.isEmpty()){
+            etUsername.setError("Please Isi Username");
+            etUsername.requestFocus();
+        }else if(password.isEmpty() || etPassword.length() < 6){
             etPassword.setError("Please Isi Password");
             etPassword.requestFocus();
-        }else if(etPasswordConfirm1.isEmpty()){ //Jika Password Confirm Kosong
-            etPasswordConfirm.setError("Please Isi Password Confirm");
-            etPasswordConfirm.requestFocus();
-        }else if(etPassword1 != etPasswordConfirm1){ //Jika pasword dan password confirm tidak sama
-            etPasswordConfirm.setError("Password Not Mactch");
-            etPasswordConfirm.requestFocus();
         }else{
+            progressDialog.setMessage("Please Wait Register");
+            progressDialog.setTitle("Registration");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
 
+            Call<ApiResponse> call = ApiClient.getApiClient().create(ApiInterface.class)
+                    .performUserRegisIn(name, username, password);
+            call.enqueue(new Callback<ApiResponse>() {
+                @Override
+                public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<ApiResponse> call, Throwable t) {
+
+                }
+            });
         }
     }
 }

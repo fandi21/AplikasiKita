@@ -45,12 +45,12 @@
         android:layout_marginEnd="293dp"
         android:layout_marginBottom="374dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Email"
+        android:text="Name"
         android:textColor="@color/login"
         android:textSize="20sp"
         android:textStyle="bold" />
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etName"
         android:layout_width="331dp"
         android:layout_height="45dp"
         android:drawableStart="@drawable/ic_mail"
@@ -72,12 +72,12 @@
         android:layout_marginEnd="250dp"
         android:layout_marginBottom="286dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Password"
+        android:text="Username"
         android:textColor="@color/login"
         android:textSize="20sp"
         android:textStyle="bold" />
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etUsername"
         android:layout_width="331dp"
         android:layout_height="45dp"
         android:drawableStart="@drawable/ic_pass"
@@ -99,12 +99,12 @@
         android:layout_marginEnd="147dp"
         android:layout_marginBottom="201dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Confirm Password"
+        android:text="Password"
         android:textColor="@color/login"
         android:textSize="20sp"
         android:textStyle="bold" />
     <EditText
-        android:id="@+id/etPasswordConfirm"
+        android:id="@+id/etPassword"
         android:layout_width="331dp"
         android:layout_height="45dp"
         android:drawableStart="@drawable/ic_pass"
