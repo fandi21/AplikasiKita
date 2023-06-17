@@ -27,7 +27,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="40dp"
         android:layout_marginTop="288dp"
-        android:layout_marginEnd="221dp"
+        android:layout_marginEnd="210dp"
         android:layout_marginBottom="381dp"
         android:fontFamily="@font/poppins_bold"
         android:text="LOGIN"
@@ -66,7 +66,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="262dp"
+        android:layout_marginEnd="250dp"
         android:layout_marginBottom="257dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Password"
@@ -83,19 +83,21 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="212dp"
         android:background="@drawable/edit_text" />
+
     <TextView
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="233dp"
-        android:layout_marginEnd="38dp"
+        android:layout_marginStart="203dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="180dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Forgot Password?"
         android:textColor="@color/login"
         android:textSize="15sp" />
+
     <LinearLayout
         android:layout_width="331dp"
         android:layout_height="21dp"
